@@ -62,5 +62,10 @@ namespace TestAppWithPlugins
 				Console.WriteLine(ex);
 			}
 		}
+		static Assembly LoadPlugin(string relativePath)
+		{
+			throw new NotImplementedException();
+		}
+
 	}
 }
