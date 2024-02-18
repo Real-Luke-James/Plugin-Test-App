@@ -19,7 +19,16 @@ namespace TestAppWithPlugins
 					Console.ReadLine();
 				}
 
-				// Load Commands from Plugins
+				string[] pluginPaths = new string[]
+				{
+					// Paths for Plugins to load from
+				};
+
+				IEnumerable<ICommand> commands = pluginPaths.SelectMany(pluginPath =>
+				{
+					Assembly pluginAssembly = LoadPlugin(pluginPath);
+					return CreateCommands(pluginAssembly);
+				});
 
 				if (args.Length == 0)
 				{
