@@ -44,7 +44,14 @@ namespace TestAppWithPlugins
 					{
 						Console.WriteLine($"-- {commandName} --");
 
-						// Execute Command with name passed as argument
+						ICommand command = commands.FirstOrDefault(c => c.Name == commandName);
+						if (command == null)
+						{
+							Console.WriteLine("No such command is known to the program.");
+							return;
+						}
+
+						command.Execute();
 
 						Console.WriteLine();
 					}
