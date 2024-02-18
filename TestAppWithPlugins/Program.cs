@@ -33,7 +33,10 @@ namespace TestAppWithPlugins
 				if (args.Length == 0)
 				{
 					Console.WriteLine("Commands: ");
-					// Output commands
+					foreach (ICommand command in commands)
+					{
+						Console.WriteLine($"{command.Name}\t - {command.Description}");
+					}
 				}
 				else
 				{
