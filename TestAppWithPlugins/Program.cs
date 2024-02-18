@@ -67,5 +67,29 @@ namespace TestAppWithPlugins
 			throw new NotImplementedException();
 		}
 
+		static IEnumerable<ICommand> CreateCommands(Assembly assembly)
+		{
+			int count = 0;
+
+			foreach (Type type in assembly.GetTypes())
+			{
+				if (typeof(ICommand).IsAssignableFrom(type))
+				{
+					ICommand result = Activator.CreateInstance(type) as ICommand;
+					if (result != null)
+					{
+						count++;
+						yield return result;
+					}
+				}
+			}
+			if (count == 0)
+			{
+				string availableTypes = string.Join(",", assembly.GetTypes().Select(t => t.Name));
+				throw new ApplicationException(
+					$"Can't find any type which implements ICommand in {assembly} from {assembly.Location}.\n" +
+					$"Available types: {availableTypes}");
+			}
+		}
 	}
 }
