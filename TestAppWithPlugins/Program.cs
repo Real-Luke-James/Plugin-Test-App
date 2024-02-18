@@ -22,6 +22,7 @@ namespace TestAppWithPlugins
 				string[] pluginPaths = new string[]
 				{
 					// Paths for Plugins to load from
+					@"HelloPlugin\bin\Debug\net8.0\HelloPlugin.dll"
 				};
 
 				IEnumerable<ICommand> commands = pluginPaths.SelectMany(pluginPath =>
