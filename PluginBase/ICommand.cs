@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace PluginBase
 {
-	internal class ICommand
+	public interface ICommand
 	{
+		string Name { get; }
+		string Description { get; }
+
+		int Execute();
 	}
 }
